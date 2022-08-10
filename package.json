@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "eris": "^0.17.1",
+    "pluris": "^0.3.7"
+  },
+  "name": "bot-in-eris",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
