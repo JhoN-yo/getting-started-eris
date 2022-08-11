@@ -1,6 +1,8 @@
 // @ts-nocheck
 const Eris = require('eris');
-let bot = new Eris('YOUR-BOT-TOKEN', {
+require('dotenv').config();
+
+let bot = new Eris(process.env.TOKEN, {
 	getAllUsers: true,
 	intents: ['guildPresences', 'guildMembers', 'guilds', 'guildMessages'],
 });
