@@ -158,6 +158,64 @@ bot.on('messageCreate', async (message) => {
 			],
 		});
 	}
+
+	bot.on('messageCreate', async (message) => {
+		if (message.author.bot) return;
+		if (!message.content.toLowerCase().startsWith(prefix)) return;
+
+		if (message.content.toLowerCase().startsWith(prefix + 'userinfo')) {
+			let member =
+				message.mentions.length >= 1 ? message.channel.guild.members.get(message.mentions[0].id) : message.member;
+			let tag = `${member.user.username}#${member.user.discriminator}`;
+			let id = member.id;
+			let status = member.status;
+			let createDate = new Date(member.createAt).toUTCString();
+			let joinedDate = new Date(member.joinedAt).toUTCString();
+			let avatar = member.user.dynamicAvatarURL('png', 4096);
+			let nickName = member.nick || 'None';
+
+			const embed = {
+				color: 0x00ff00,
+				author: {
+					name: tag,
+					icon_url: avatar,
+					url: avatar,
+				},
+				thumbnail: {
+					url: avatar,
+				},
+				fields: [
+					{
+						name: 'Information',
+						value: stripIndents`
+					> **__Tag:__** ${tag}
+					> **__ID:__** ${id}
+					> **__Status:__** ${status}
+					> **__Create Account At:__** ${createDate}
+					> **__Joined Guild At:__** ${joinedDate}
+					> **__Nickname:__** ${nickName}
+				`,
+					},
+				],
+			};
+			return message.channel.createMessage({
+				embed: embed,
+				components: [
+					{
+						type: 1,
+						components: [
+							{
+								type: 2,
+								label: 'Support Server',
+								style: 5,
+								url: 'https://discord.gg/',
+							},
+						],
+					},
+				],
+			});
+		}
+	});
 });
 
 bot.connect();
