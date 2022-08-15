@@ -1,8 +1,13 @@
 {
   "dependencies": {
+    "colors": "^1.4.0",
     "common-tags": "^1.8.2",
     "dotenv": "^16.0.1",
     "eris": "^0.17.1",
+    "fs": "^0.0.1-security",
+    "klaw": "^4.0.1",
+    "moment": "^2.29.4",
+    "mongoose": "^6.5.2",
     "pluris": "^0.3.7"
   },
   "name": "bot-in-eris",
