@@ -17,7 +17,7 @@ module.exports = class ReadyListener extends Listener {
 					type: 3,
 				},
 				{
-					name: 'Genshin Impact',
+					name: 'CarX Drift Racing',
 					type: 1,
 					url: 'https://www.twitch.tv/voidappend',
 				}
@@ -25,5 +25,6 @@ module.exports = class ReadyListener extends Listener {
 			const activity = activities[Math.floor(Math.random() * activities.length)];
 			this.client.editStatus('online', activity);
 		};
+		setInterval(editClientStatus, 1000);
 	}
 };
