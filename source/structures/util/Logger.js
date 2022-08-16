@@ -17,10 +17,10 @@ module.exports = class Logger {
 	async error(error) {
 		embed.setTitle(
 			'Ocorreu um erro inesperado...',
-			'https://cdn.discordapp.com/emojis/1005192372738601001.webp?size=128&quality=lossless',
+			'https://cdn.discordapp.com/emojis/1005192372738601001.webp?size=128&quality=lossless'
 		);
 		embed.setDescription(`\`\`\`fix\n${error.stack}\`\`\``);
-		const channels = await this.client.getRestGuildChannels('1002270891985604689');
+		const channels = await this.client.getRESTGuildChannels('1002270483850465441');
 		for (const channel of channels) {
 			if (channel.id !== '1002270892862214246') continue;
 			const webhooks = await channel.getWebhooks();
