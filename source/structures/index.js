@@ -4,4 +4,6 @@ module.exports = {
 	Embed: require('./embed/Embed'),
 	Client: require('./classes/Client'),
 	Logger: require('./util/Logger'),
+	Button: require('./components/Button'),
+	SelectMenu: require('./components/SelectMenu')
 };

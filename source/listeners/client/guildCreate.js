@@ -1,5 +1,4 @@
-
-const { Listener, Embed } = require('../../structures');
+const { Listener, Embed, Button } = require('../../structures');
 const { Guild } = require('../../database');
 
 module.exports = class GuildCreateListener extends Listener {
@@ -33,15 +32,41 @@ module.exports = class GuildCreateListener extends Listener {
 			if (channel.id !== '1002270892862214246') continue;
 			const webhooks = await channel.getWebhooks();
 			var webhook = webhooks.filter((w) => w.name === `${this.client.user.username} Tracker`)[0];
-			if (!webhook) webhook = await channel.createWebhook({
-				name: `${this.client.user.username} Tracker`,
-				avatar: this.client.user.avatarURL,
-			});
+			if (!webhook)
+				webhook = await channel.createWebhook({
+					name: `${this.client.user.username} Tracker`,
+					avatar: this.client.user.avatarURL,
+				});
 			this.client.executeWebhook(webhook.id, webhook.token, {
 				embed,
 				avatarURL: this.client.user.avatarURL,
-				username: `${this.client.user.username} Tracker`
+				username: `${this.client.user.username} Tracker`,
 			});
 		}
+
+		guild.createChannel(`🤖・Click Here`, 0, {
+				parentID: (await guild.createChannel(`${this.client.user.username} setup`, 4)).id,
+				permissionOverwrites: [{ id: guild.id, deny: 0x400 | 0x800 }],
+			})
+			.then(async (channel) => {
+				const embed = new Embed();
+				const button = new Button();
+				button.setStyle('LINK')
+				button.setLabel('Suport Server')
+				button.setEmoji('🚀');
+				button.setURL('https://discord.gg/');
+				embed.setAuthor(
+					`Welcome to Setup System`,
+					'https://cdn.discordapp.com/emojis/1005192422428520449.webp?size=128&quality=lossless',
+				);
+				embed.setDescription(`> *Please follow the instructions below to setup your server*`);
+				await channel.createMessage({
+					embed,
+					components: [{
+						type: 1,
+						components: [button],
+					}]
+				});
+			});
 	}
 };
