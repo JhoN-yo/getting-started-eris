@@ -19,5 +19,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "eris-addons": "^1.0.31"
+  }
 }
